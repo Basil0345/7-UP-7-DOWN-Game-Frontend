@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { CheckWinOrLose, rollDice, updateCurrentAmount } from "../features/game/gameSlice";
-import { API_URL } from "../vars/constants";
 
 function useApi() {
     const userData = useSelector((state) => state.userData);
@@ -23,7 +22,7 @@ function useApi() {
 
         try {
             const response = await axios.get(
-                `${API_URL}/dice/roll-dice`
+                `${import.meta.env.VITE_API_URL}/dice/roll-dice`
             );
             const result = response.data;
             dispatch(rollDice(result));
@@ -36,10 +35,9 @@ function useApi() {
     const checkWin = async (data) => {
         try {
             const response = await axios.post(
-                `${API_URL}/dice/check-win`,
+                `${import.meta.env.VITE_API_URL}/dice/check-win`,
                 data
             );
-            console.log("Response:", response.data);
             const result = response.data;
             dispatch(CheckWinOrLose(result));
             return result;
@@ -52,10 +50,9 @@ function useApi() {
     const updateAmount = async (result) => {
         try {
             const response = await axios.post(
-                `${API_URL}/dice/update-amount`,
+                `${import.meta.env.VITE_API_URL}/dice/update-amount`,
                 result
             );
-            console.log("Response:", response.data);
             const { newAmount } = response.data;
             dispatch(updateCurrentAmount(newAmount))
         } catch (error) {
