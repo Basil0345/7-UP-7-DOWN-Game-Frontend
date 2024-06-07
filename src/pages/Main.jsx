@@ -4,12 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleOption } from "../features/game/gameSlice";
 
 import CasinoIcon from "@mui/icons-material/Casino";
-
-import Spinner from "../components/Spinner";
-import AmountSelector from "../components/AmountSelector";
-import OptionSelector from "../components/OptionSelector";
 import useApi from "../hooks/useApi";
-import Result from "../components/Result";
+
+import { AmountSelector, OptionSelector, Result, Spinner } from "../components";
 
 const Main = () => {
   const userData = useSelector((state) => state.userData);
